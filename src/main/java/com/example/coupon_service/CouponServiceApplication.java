@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.coupon_service.api.dto.CustomerDto;
-import com.example.coupon_service.api.dto.ProductDto;
+import com.example.coupon_service.domain.Customer;
 import com.example.coupon_service.domain.CustomerService;
+import com.example.coupon_service.domain.Product;
 import com.example.coupon_service.domain.ProductService;
 
 @SpringBootApplication
@@ -22,18 +22,18 @@ public class CouponServiceApplication {
     @Bean
     public CommandLineRunner testShopClient(ProductService productService) {
         return args -> {
-            List<ProductDto> products = productService.getProducts();
+            List<Product> products = productService.getProducts();
             System.out.println("Products (Startup Test):");
-            products.forEach(product -> System.out.println(product.name()));
+            products.forEach(product -> System.out.println(product));
         };
     }
 
     @Bean
     public CommandLineRunner testCustomerClient(CustomerService customerService) {
         return args -> {
-            List<CustomerDto> customers = customerService.getCustomers();
+            List<Customer> customers = customerService.getCustomers();
             System.out.println("Customers (Startup Test):");
-            customers.forEach(c -> System.out.println(c.customerId()));
+            customers.forEach(c -> System.out.println(c));
         };
     }
 
