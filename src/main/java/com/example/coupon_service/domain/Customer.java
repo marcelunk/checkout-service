@@ -5,6 +5,7 @@ import java.util.List;
 public class Customer {
 
     private String customerId;
+
     private List<Order> orders;
 
     public Customer(String customerId, List<Order> orders) {

@@ -1,6 +1,7 @@
 package com.example.coupon_service.domain;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -12,18 +13,34 @@ public class CustomerService {
 
     private final CustomerClient client;
 
-    private List<Customer> customers;
+    private Set<Customer> customers;
 
     public CustomerService(CustomerClient client) {
         this.client = client;
     }
 
-    public List<Customer> getCustomers() {
+    public Set<Customer> getCustomers() {
         if (customers == null) {
-            this.customers = this.client.loadCustomers().stream().map(CustomerMapper::toDomain).toList();
+            this.loadCustomers();
         }
 
         return this.customers;
+    }
+
+    public Customer getCustomer(String customerId) {
+        for (Customer customer : this.getCustomers()) {
+            if (customer.getCustomerId().equals(customerId)) {
+                return customer;
+            }
+        }
+
+        return null;
+    }
+
+    private void loadCustomers() {
+        this.customers = this.client.loadCustomers().stream()
+                .map(CustomerMapper::toDomain)
+                .collect(Collectors.toSet());
     }
 
 }

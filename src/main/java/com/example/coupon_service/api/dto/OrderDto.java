@@ -4,11 +4,11 @@ import jakarta.validation.constraints.NotNull;
 
 public record OrderDto(
 
-        @NotNull String orderId,
+                @NotNull String orderId,
 
-        @NotNull String date,
+                @NotNull String date,
 
-        @NotNull Long total
+                @NotNull Double total
 
 ) {
 }

@@ -6,9 +6,9 @@ public class Product {
     private String name;
     private String category;
     private Integer stock;
-    private Integer price;
+    private Double price;
 
-    public Product(String productId, String name, String category, Integer stock, Integer price) {
+    public Product(String productId, String name, String category, Integer stock, Double price) {
         this.productId = productId;
         this.name = name;
         this.category = category;
@@ -32,13 +32,13 @@ public class Product {
         return stock;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %d, %d", this.productId, this.name, this.category, this.stock, this.price);
+        return String.format("%s, %s, %s, %d, %.2f", this.productId, this.name, this.category, this.stock, this.price);
     }
 
 }

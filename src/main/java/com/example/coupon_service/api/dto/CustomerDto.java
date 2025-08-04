@@ -6,9 +6,9 @@ import jakarta.validation.constraints.NotNull;
 
 public record CustomerDto(
 
-                @NotNull String customerId,
+        @NotNull String customerId,
 
-                @NotNull List<OrderDto> orders
+        @NotNull List<OrderDto> orders
 
 ) {
 }
