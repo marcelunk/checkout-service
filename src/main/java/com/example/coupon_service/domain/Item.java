@@ -19,14 +19,6 @@ public class Item {
         return quantity;
     }
 
-    public Integer increaseQuantity() {
-        return ++quantity;
-    }
-
-    public Integer decreaseQuantity() {
-        return --quantity;
-    }
-
     @Override
     public String toString() {
         return String.format("Item: %s, %s", productId, quantity);

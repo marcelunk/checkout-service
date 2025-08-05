@@ -24,6 +24,18 @@ public class CheckoutItem {
         this.description = description;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public Double getSinglePrice() {
+        return singlePrice;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
     public Double getOriginalPrice() {
         return originalPrice;
     }
@@ -39,7 +51,7 @@ public class CheckoutItem {
     @Override
     public String toString() {
         return String.format(
-                "%s\nSingle Price: %.2f Euro\nQuantity: %d\nOriginal Price: %.2f Euro\nNew Price: %.2f Euro\n%s\n-----",
+                "%s\nSingle Price: %.2f Euro\nQuantity: %d\nOriginal Sum: %.2f Euro\nNew Sum: %.2f Euro\n%s\n-----",
                 this.productName,
                 this.singlePrice,
                 this.quantity,

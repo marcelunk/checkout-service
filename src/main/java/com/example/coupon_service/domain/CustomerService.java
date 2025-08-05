@@ -19,6 +19,12 @@ public class CustomerService {
         this.client = client;
     }
 
+    public boolean hasCustomer(String customerId) {
+        return this.getCustomers().stream()
+                .map(Customer::getCustomerId)
+                .anyMatch(id -> id.equals(customerId));
+    }
+
     public Set<Customer> getCustomers() {
         if (customers == null) {
             this.loadCustomers();

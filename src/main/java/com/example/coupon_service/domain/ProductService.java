@@ -31,6 +31,14 @@ public class ProductService {
         return this.productsById.values();
     }
 
+    public Collection<String> getProductIds() {
+        if (productsById == null) {
+            this.loadProducts();
+        }
+
+        return this.productsById.keySet();
+    }
+
     public Product getProduct(String productId) {
         for (Product product : this.getProducts()) {
             if (product.getProductId().equals(productId)) {
@@ -54,6 +62,10 @@ public class ProductService {
         }
 
         return -1;
+    }
+
+    public boolean hasProduct(String productId) {
+        return this.getProductIds().contains(productId);
     }
 
 }

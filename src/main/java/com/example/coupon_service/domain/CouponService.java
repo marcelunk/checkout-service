@@ -13,11 +13,15 @@ public class CouponService {
 
     private final ProductService productService;
 
-    public CouponService(ProductService productService) {
+    private final CustomerService customerService;
+
+    public CouponService(ProductService productService, CustomerService customerService) {
         this.productService = productService;
+        this.customerService = customerService;
     }
 
-    public boolean isEligibleForDiscountInCurrentYear(@Nonnull Customer customer) {
+    public boolean isEligibleForDiscountInCurrentYear(@Nonnull String customerId) {
+        Customer customer = this.customerService.getCustomer(customerId);
         double totalSales = customer.getOrders().stream()
                 .filter(o -> o.getDate().year == Year.now().getValue())
                 .mapToDouble(Order::getTotal)

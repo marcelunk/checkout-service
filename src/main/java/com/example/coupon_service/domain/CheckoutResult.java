@@ -25,6 +25,14 @@ public class CheckoutResult {
         this.totalSum = this.items.stream().mapToDouble(CheckoutItem::getNewPrice).sum();
     }
 
+    public List<CheckoutItem> getItems() {
+        return items;
+    }
+
+    public Double getTotalSum() {
+        return totalSum;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
