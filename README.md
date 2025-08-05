@@ -32,4 +32,4 @@ Invoke-RestMethod -Uri http://localhost:8080/api/checkout -Method Post -Body $js
 
 
 
-Die gesamte Testsuite mit Integration Tests kann mit `mvnw verify` ausgeführt werden. Unit Tests mit `mvnw test`. Diese testen den Kern der Geschäftslogik und den `CheckoutRestController`.
+Die gesamte Testsuite mit Integration Tests kann mit `./mvnw verify` ausgeführt werden. Unit Tests mit `./mvnw test`. Diese testen den Kern der Geschäftslogik und den `CheckoutRestController`.
