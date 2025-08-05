@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>coupon-service</artifactId>
+	<artifactId>checkout-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>coupon-service</name>
-	<description>Coupon Service Coding Challenge</description>
+	<name>checkout-service</name>
+	<description>Checkout Service Coding Challenge</description>
 	<url/>
 	<licenses>
 		<license/>
