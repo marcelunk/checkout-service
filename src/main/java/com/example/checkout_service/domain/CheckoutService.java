@@ -25,7 +25,7 @@ public class CheckoutService {
         List<CheckoutItem> checkoutItems = checkoutBasket(customerId, basket);
         CheckoutResult result = new CheckoutResult(checkoutItems);
         result.checkout();
-        Logger.getAnonymousLogger().info(String.format("### Checked out:\n %s", result));
+        Logger.getAnonymousLogger().fine(String.format("### Checked out:\n %s", result));
         return result;
     }
 
@@ -60,11 +60,12 @@ public class CheckoutService {
     }
 
     public boolean validate(Checkout checkout) {
+        boolean isNotEmpty = !checkout.getBasket().isEmpty();
         boolean hasCustomer = this.customerService.hasCustomer(checkout.getCustomerId());
         boolean hasProducts = checkout.getBasket().stream()
                 .map(Item::getProductId)
                 .allMatch(id -> this.productService.hasProduct(id));
-        return hasCustomer && hasProducts;
+        return hasCustomer && hasProducts && isNotEmpty;
     }
 
 }

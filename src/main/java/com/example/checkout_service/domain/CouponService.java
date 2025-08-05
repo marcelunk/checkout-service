@@ -32,7 +32,7 @@ public class CouponService {
     public boolean isEligibleForDiscount(@Nonnull Item item) {
         String productId = item.getProductId();
         Product product = this.productService.getProduct(productId);
-        int quantity = this.productService.getQuantity(productId);
+        int quantity = this.productService.getStock(productId);
         return (PROMO.equals(product.getCategory()) && quantity >= 5);
     }
 

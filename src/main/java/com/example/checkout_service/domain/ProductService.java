@@ -56,8 +56,8 @@ public class ProductService {
                 .collect(Collectors.toMap(Product::getProductId, Function.identity()));
     }
 
-    public int getQuantity(String productId) {
-        if (this.productsById.containsKey(productId)) {
+    public int getStock(String productId) {
+        if (this.getProductIds().contains(productId)) {
             return this.productsById.get(productId).getStock();
         }
 
