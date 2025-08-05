@@ -13,8 +13,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.example.checkout_service.api.dto.CheckoutRequestDto;
-import com.example.checkout_service.api.dto.CheckoutResponseDto;
+import com.example.checkout_service.api.dto.CheckoutPostRequestDto;
+import com.example.checkout_service.api.dto.CheckoutPostResponseDto;
 import com.example.checkout_service.api.dto.ItemDto;
 
 @SpringBootTest(classes = CheckoutServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -30,14 +30,15 @@ public class CheckoutServiceApplicationIT {
 
         @Test
         void testValidPostCheckoutRequest() {
-                CheckoutRequestDto request = new CheckoutRequestDto("C1001",
+                CheckoutPostRequestDto request = new CheckoutPostRequestDto("C1001",
                                 List.of(
                                                 new ItemDto("P100", 1),
                                                 new ItemDto("P101", 1),
                                                 new ItemDto("P200", 2)));
 
-                CheckoutResponseDto response = this.restTemplate
-                                .postForObject(BASE_URL + port + "/api/checkout", request, CheckoutResponseDto.class);
+                CheckoutPostResponseDto response = this.restTemplate
+                                .postForObject(BASE_URL + port + "/api/checkout", request,
+                                                CheckoutPostResponseDto.class);
 
                 assertEquals(response.items().size(), 3);
                 assertEquals(469.961, response.totalSum());
@@ -45,36 +46,39 @@ public class CheckoutServiceApplicationIT {
 
         @Test
         void testInvalidCustomerPostCheckoutRequest() {
-                CheckoutRequestDto request = new CheckoutRequestDto("invalid",
+                CheckoutPostRequestDto request = new CheckoutPostRequestDto("invalid",
                                 List.of(
                                                 new ItemDto("P100", 1),
                                                 new ItemDto("P101", 1),
                                                 new ItemDto("P200", 2)));
 
-                ResponseEntity<CheckoutResponseDto> response = this.restTemplate
-                                .postForEntity(BASE_URL + port + "/api/checkout", request, CheckoutResponseDto.class);
+                ResponseEntity<CheckoutPostResponseDto> response = this.restTemplate
+                                .postForEntity(BASE_URL + port + "/api/checkout", request,
+                                                CheckoutPostResponseDto.class);
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         }
 
         @Test
         void testInvalidItemPostCheckoutRequest() {
-                CheckoutRequestDto request = new CheckoutRequestDto("C1001",
+                CheckoutPostRequestDto request = new CheckoutPostRequestDto("C1001",
                                 List.of(
                                                 new ItemDto("invalid", 1),
                                                 new ItemDto("P101", 1),
                                                 new ItemDto("P200", 2)));
 
-                ResponseEntity<CheckoutResponseDto> response = this.restTemplate
-                                .postForEntity(BASE_URL + port + "/api/checkout", request, CheckoutResponseDto.class);
+                ResponseEntity<CheckoutPostResponseDto> response = this.restTemplate
+                                .postForEntity(BASE_URL + port + "/api/checkout", request,
+                                                CheckoutPostResponseDto.class);
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         }
 
         @Test
         void testEmptyItemsPostCheckoutRequest() {
-                CheckoutRequestDto request = new CheckoutRequestDto("C1001", Collections.emptyList());
+                CheckoutPostRequestDto request = new CheckoutPostRequestDto("C1001", Collections.emptyList());
 
-                ResponseEntity<CheckoutResponseDto> response = this.restTemplate
-                                .postForEntity(BASE_URL + port + "/api/checkout", request, CheckoutResponseDto.class);
+                ResponseEntity<CheckoutPostResponseDto> response = this.restTemplate
+                                .postForEntity(BASE_URL + port + "/api/checkout", request,
+                                                CheckoutPostResponseDto.class);
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         }
 

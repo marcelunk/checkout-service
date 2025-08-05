@@ -6,7 +6,7 @@ import com.example.checkout_service.domain.Checkout;
 
 import jakarta.validation.constraints.NotNull;
 
-public record CheckoutRequestDto(
+public record CheckoutPostRequestDto(
         @NotNull String customerId,
         @NotNull List<ItemDto> items) {
 
